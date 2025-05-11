@@ -24,8 +24,8 @@ class ProductRepository {
         supplier,
         banner,
       });
-
       const productResult = await product.save();
+
       return productResult;
     } catch (err) {
       throw new APIError(
@@ -63,6 +63,7 @@ class ProductRepository {
   async FindByCategory(category) {
     try {
       const products = await ProductModel.find({ type: category });
+
       return products;
     } catch (err) {
       throw new APIError(
@@ -79,6 +80,7 @@ class ProductRepository {
         .where('_id')
         .in(selectedIds.map((_id) => _id))
         .exec();
+
       return products;
     } catch (err) {
       throw new APIError(

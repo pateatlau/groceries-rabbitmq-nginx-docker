@@ -13,6 +13,7 @@ module.exports = async (app) => {
     console.log('Request: ', req.rawHeaders);
     next();
   });
+
   // Listen to app events
   appEvents(app);
 

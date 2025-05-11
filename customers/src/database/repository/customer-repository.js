@@ -16,7 +16,7 @@ class CustomerRepository {
       throw new APIError(
         'API Error',
         STATUS_CODES.INTERNAL_ERROR,
-        'Unable to Get Customers '
+        'Unable to Get Customers'
       );
     }
   }
@@ -31,6 +31,7 @@ class CustomerRepository {
         address: [],
       });
       const customerResult = await customer.save();
+
       return customerResult;
     } catch (err) {
       throw new APIError(
@@ -54,7 +55,6 @@ class CustomerRepository {
         });
 
         await newAddress.save();
-
         profile.address.push(newAddress);
       }
 
@@ -71,6 +71,7 @@ class CustomerRepository {
   async FindCustomer({ email }) {
     try {
       const existingCustomer = await CustomerModel.findOne({ email: email });
+
       return existingCustomer;
     } catch (err) {
       throw new APIError(
@@ -86,6 +87,7 @@ class CustomerRepository {
       const existingCustomer = await CustomerModel.findById(id).populate(
         'address'
       );
+
       return existingCustomer;
     } catch (err) {
       throw new APIError(
@@ -196,7 +198,6 @@ class CustomerRepository {
         }
 
         profile.cart = cartItems;
-
         const cartSaveResult = await profile.save();
 
         return cartSaveResult;
@@ -220,10 +221,9 @@ class CustomerRepository {
         if (profile.orders == undefined) {
           profile.orders = [];
         }
+
         profile.orders.push(order);
-
         profile.cart = [];
-
         const profileResult = await profile.save();
 
         return profileResult;

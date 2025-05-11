@@ -12,6 +12,7 @@ module.exports = (app) => {
       '========== Products Service received event ==========',
       payload
     );
+
     return res.status(200).json(payload);
   });
 };

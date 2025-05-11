@@ -20,6 +20,7 @@ module.exports = (app) => {
         suplier,
         banner,
       });
+
       return res.json(data);
     } catch (err) {
       next(err);
@@ -31,6 +32,7 @@ module.exports = (app) => {
 
     try {
       const { data } = await service.GetProductsByCategory(type);
+
       return res.status(200).json(data);
     } catch (err) {
       next(err);
@@ -54,6 +56,7 @@ module.exports = (app) => {
     try {
       const { ids } = req.body;
       const products = await service.GetSelectedProducts(ids);
+
       return res.status(200).json(products);
     } catch (err) {
       next(err);
@@ -87,7 +90,7 @@ module.exports = (app) => {
       // get payload to send to customer service
       const { data } = await service.GetProductPayload(
         _id,
-        { productId: req.body._id },
+        { productId },
         'REMOVE_FROM_WISHLIST'
       );
 

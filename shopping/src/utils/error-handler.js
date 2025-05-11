@@ -1,6 +1,5 @@
 const { createLogger, transports } = require('winston');
 const { AppError } = require('./app-errors');
-
 const LogErrors = createLogger({
   transports: [
     new transports.Console(),
@@ -58,6 +57,7 @@ const ErrorHandler = async (err, req, res, next) => {
     } else {
       //process exit // terribly wrong with flow need restart
     }
+
     return res.status(err.statusCode).json({ message: err.message });
   }
   next();

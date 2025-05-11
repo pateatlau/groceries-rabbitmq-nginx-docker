@@ -1,21 +1,16 @@
-const {
-  CustomerModel,
-  ProductModel,
-  OrderModel,
-  CartModel,
-} = require('../models');
+const { OrderModel, CartModel } = require('../models');
 const { v4: uuidv4 } = require('uuid');
 const { APIError, STATUS_CODES } = require('../../utils/app-errors');
 
 //Dealing with data base operations
 class ShoppingRepository {
-  // payment
-
+  // TBD: payment
   async Orders(customerId) {
     try {
       const orders = await OrderModel.find({ customerId }).populate(
         'items.product'
       );
+
       return orders;
     } catch (err) {
       throw APIError(
@@ -29,6 +24,7 @@ class ShoppingRepository {
   async Cart(customerId) {
     try {
       const cartItems = await CartModel.find({ customerId });
+
       if (cartItems) {
         return cartItems;
       }
@@ -84,8 +80,7 @@ class ShoppingRepository {
   }
 
   async CreateNewOrder(customerId, txnId) {
-    //check transaction for payment Status
-
+    // TBD: check transaction for payment Status
     try {
       const cart = await CartModel.findOne({ customerId });
 
@@ -100,7 +95,6 @@ class ShoppingRepository {
           });
 
           const orderId = uuidv4();
-
           const order = new OrderModel({
             orderId,
             customerId,
@@ -111,11 +105,9 @@ class ShoppingRepository {
           });
 
           cart.items = [];
-
           const orderResult = await order.save();
 
           //   profile.orders.push(orderResult);
-
           await cart.save();
 
           return orderResult;

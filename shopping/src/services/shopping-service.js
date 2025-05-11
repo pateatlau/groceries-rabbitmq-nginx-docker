@@ -20,8 +20,7 @@ class ShoppingService {
   async PlaceOrder(userInput) {
     const { _id, txnNumber } = userInput;
 
-    // Verify the txn number with payment logs
-
+    // TBD: Verify the txn number with payment logs
     try {
       const orderResult = await this.repository.CreateNewOrder(_id, txnNumber);
 
