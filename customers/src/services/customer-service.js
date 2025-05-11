@@ -93,6 +93,15 @@ class CustomerService {
     }
   }
 
+  async GetAllCustomers() {
+    try {
+      const customers = await this.repository.GetAllCustomers();
+      return FormatData(customers);
+    } catch (err) {
+      throw new APIError('Customers Data Not found', err);
+    }
+  }
+
   async GetProfile(id) {
     try {
       const existingCustomer = await this.repository.FindCustomerById({ id });

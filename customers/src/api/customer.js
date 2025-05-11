@@ -4,8 +4,14 @@ const UserAuth = require('./middlewares/auth');
 module.exports = (app) => {
   const service = new CustomerService();
 
-  app.get('/', (req, res) => {
-    return res.status(200).json({ message: 'Hello from Customer service' });
+  app.get('/', async (req, res) => {
+    try {
+      const { data } = await service.GetAllCustomers();
+
+      return res.status(200).json(data);
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   app.post('/signup', async (req, res, next) => {

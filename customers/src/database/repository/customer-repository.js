@@ -7,6 +7,20 @@ const {
 
 //Dealing with data base operations
 class CustomerRepository {
+  async GetAllCustomers() {
+    try {
+      const customers = await CustomerModel.find();
+
+      return customers;
+    } catch (err) {
+      throw new APIError(
+        'API Error',
+        STATUS_CODES.INTERNAL_ERROR,
+        'Unable to Get Customers '
+      );
+    }
+  }
+
   async CreateCustomer({ email, password, phone, salt }) {
     try {
       const customer = new CustomerModel({
