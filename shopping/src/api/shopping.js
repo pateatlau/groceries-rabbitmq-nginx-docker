@@ -5,6 +5,10 @@ const UserAuth = require('./middlewares/auth');
 module.exports = (app) => {
   const service = new ShoppingService();
 
+  app.get('/', (req, res) => {
+    return res.status(200).json({ message: 'Hello from Shopping service' });
+  });
+
   app.post('/order', UserAuth, async (req, res, next) => {
     const { _id } = req.user;
     const { txnNumber } = req.body;

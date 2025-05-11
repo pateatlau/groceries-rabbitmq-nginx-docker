@@ -63,7 +63,14 @@ class CustomerService {
         _id: existingCustomer._id,
       });
 
-      return FormatData({ id: existingCustomer._id, token });
+      return FormatData({
+        id: existingCustomer._id,
+        token,
+        email,
+        password: userPassword,
+        phone,
+        salt,
+      });
     } catch (err) {
       throw new APIError('Data Not found', err);
     }

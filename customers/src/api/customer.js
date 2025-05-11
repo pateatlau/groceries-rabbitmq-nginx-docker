@@ -5,7 +5,7 @@ module.exports = (app) => {
   const service = new CustomerService();
 
   app.get('/', (req, res) => {
-    return res.status(200).json({ message: 'Hello from customer service' });
+    return res.status(200).json({ message: 'Hello from Customer service' });
   });
 
   app.post('/signup', async (req, res, next) => {
