@@ -42,7 +42,6 @@ class ShoppingService {
   }
 
   async ManageCart(customerId, item, qty, isRemove) {
-    console.log('ManageCart: item = ', item);
     try {
       const cartResult = await this.repository.AddCartItem(
         customerId,

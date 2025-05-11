@@ -61,8 +61,6 @@ module.exports = (app) => {
   });
 
   app.put('/wishlist', UserAuth, async (req, res, next) => {
-    console.log('WISHLIST: req.body = ', req.body);
-    console.log('WISHLIST: req.user = ', req.user);
     const { _id } = req.user;
 
     try {

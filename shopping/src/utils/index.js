@@ -25,7 +25,7 @@ module.exports.GenerateSignature = async (payload) => {
   try {
     return await jwt.sign(payload, JWT_SECRET, { expiresIn: '30d' });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return error;
   }
 };
@@ -38,7 +38,7 @@ module.exports.ValidateSignature = async (req) => {
     req.user = payload;
     return true;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };

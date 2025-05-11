@@ -125,7 +125,6 @@ class CustomerService {
   }
 
   async AddToWishlist(customerId, product) {
-    console.log('AddToWishlist: product = ', product);
     try {
       const wishlistResult = await this.repository.AddWishlistItem(
         customerId,
